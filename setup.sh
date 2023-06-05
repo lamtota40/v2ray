@@ -11,10 +11,10 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 # =====================================================
-MYIP=$(wget -qO- ipinfo.io/ip);
-echo "Checking VPS"
+#MYIP=$(wget -qO- ipinfo.io/ip);
+#echo "Checking VPS"
 
-IZIN=$( curl https://raw.githubusercontent.com/godtrex99/ip/main/ipvps | grep $MYIP )
+#IZIN=$( curl https://raw.githubusercontent.com/godtrex99/ip/main/ipvps | grep $MYIP )
 
 #if [ $MYIP = $IZIN ]; then
 #echo -e "${GREEN}Akses Di Izinkan...${NC}"
