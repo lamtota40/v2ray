@@ -25,9 +25,9 @@ LIGHT='\033[0;37m'
 #echo "WhatsApp   : 083857684916"
 #exit 0
 #fi
-clear
+#clear
+#clear
 MYIP=$(wget -qO- ipinfo.io/ip);
-clear
 #domain=$(cat /etc/xray/domain)
 domain=$(cat /root/myvpn/domain)
 apt install iptables iptables-persistent -y
