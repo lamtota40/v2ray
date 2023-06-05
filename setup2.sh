@@ -107,3 +107,37 @@ cat > /etc/xray/config.json << END
           {
             "id": "${uuid1}",
             "alterId": 0
+#xray-vmess-nontls
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "tlsSettings": {},
+        "tcpSettings": {},
+        "kcpSettings": {},
+        "httpSettings": {},
+        "wsSettings": {
+          "path": "/Jvg",
+          "headers": {
+            "Host": ""
+          }
+        },
+        "quicSettings": {}
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      }
+    },
+    {
+      "port": 8443,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "${uuid2}"
