@@ -16,15 +16,15 @@ echo "Checking VPS"
 
 IZIN=$( curl https://raw.githubusercontent.com/godtrex99/ip/main/ipvps | grep $MYIP )
 
-if [ $MYIP = $IZIN ]; then
-echo -e "${GREEN}Akses Di Izinkan...${NC}"
-else
-echo -e "${RED}VPS tidak diijinkan${NC}";
-echo "Kontak Admin Untuk Mendapatkan Akses Script"
-echo "Facebook   : Generasi Jvg Tuban"
-echo "WhatsApp   : 083857684916"
-exit 0
-fi
+#if [ $MYIP = $IZIN ]; then
+#echo -e "${GREEN}Akses Di Izinkan...${NC}"
+#else
+#echo -e "${RED}VPS tidak diijinkan${NC}";
+#echo "Kontak Admin Untuk Mendapatkan Akses Script"
+#echo "Facebook   : Generasi Jvg Tuban"
+#echo "WhatsApp   : 083857684916"
+#exit 0
+#fi
 clear
 MYIP=$(wget -qO- ipinfo.io/ip);
 clear
