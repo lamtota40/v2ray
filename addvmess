@@ -84,3 +84,56 @@ cat >/etc/xray/$user-tls.json << EOF
       "tls": "tls"
 }
 EOF
+vmess_base641=$( base64 -w 0 <<< $vmess_json1)
+vmess_base642=$( base64 -w 0 <<< $vmess_json2)
+vmess_base642=$( base64 -w 0 <<< $vmess_json3)
+xrayv2ray1="vmess://$(base64 -w 0 /etc/xray/vmess-$user-tls.json)"
+xrayv2ray2="vmess://$(base64 -w 0 /etc/xray/vmess-$user-nontls.json)"
+xrayv2ray3="vmess://$(base64 -w 0 /etc/xray/$user-tls.json)"
+systemctl restart xray.service
+service cron restart
+clear
+echo -e ""
+echo -e "═══════════════════════" | lolcat
+echo -e "====•=•-XRAYS/V2RAY-=•=•===" | lolcat
+echo -e "═══════════════════════" | lolcat
+echo -e "Remarks     : ${user}" | lolcat
+echo -e "IP/Host     : ${MYIP}" | lolcat
+echo -e "Address     : ${domain}" | lolcat
+echo -e "Port TLS    : ${tls}" | lolcat
+echo -e "Port No TLS : ${nontls}" | lolcat
+echo -e "Port GRPC   : 80" | lolcat
+echo -e "User ID     : ${uuid}" | lolcat
+echo -e "Alter ID    : 0" | lolcat
+echo -e "Security WS : auto" | lolcat
+echo -e "Network     : WS & Grpc" | lolcat
+echo -e "Mode        : Multi" | lolcat
+echo -e "SecurityGRPC: TLS" | lolcat
+echo -e "Type        : GRPC" | lolcat
+echo -e "Service Name: GunService" | lolcat
+echo -e "Bug         : ${bug}" | lolcat
+echo -e "Path        : /Jvg" | lolcat
+echo -e "═══════════════════════" | lolcat
+echo -e "Link TLS    : " | lolcat
+echo -e ""
+echo -e " ${xrayv2ray1}" | lolcat
+echo -e "════════════════" | lolcat
+echo -e "Link Non TLS : " | lolcat
+echo -e ""
+echo -e " ${xrayv2ray2}" | lolcat
+echo -e "════════════════" | lolcat
+echo -e "Link GRPC : " | lolcat
+echo -e ""
+echo -e " ${xrayv2ray3}" | lolcat
+echo -e "═══════════════════════" | lolcat
+echo -e "Created     : $hariini" | lolcat
+echo -e "Expired     : $exp" | lolcat
+echo -e "═══════════════════════" | lolcat
+echo -e "${RED}AutoScriptSSH By Jvg${NC}"
+echo -e "═══════════════════════" | lolcat
+echo -e""
+read -p "Ketik Enter Untuk Kembali Ke Menu...."
+sleep 1
+menu
+exit 0
+fi
