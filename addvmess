@@ -30,3 +30,57 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 		fi
 	done
 uuid=$(cat /proc/sys/kernel/random/uuid)
+read -p "Expired (Days) : " masaaktif
+hariini=`date -d "0 days" +"%Y-%m-%d"`
+exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
+sed -i '/#xray-vmess-tls$/a\### '"$user $exp"'\
+},{"id": "'""$uuid""'","alterId": '"32"',"email": "'""$user""'"' /etc/xray/config.json
+sed -i '/#xray-vmess-nontls$/a\### '"$user $exp"'\
+},{"id": "'""$uuid""'","alterId": '"32"',"email": "'""$user""'"' /etc/xray/config.json
+sed -i '/#vmessgrpc$/a\### '"$user $exp"'\
+},{"id": "'""$uuid""'","alterId": '"32"',"email": "'""$user""'"' /etc/xray/vmessgrpc.json
+cat>/etc/xray/vmess-$user-tls.json<<EOF
+      {
+      "v": "2",
+      "ps": "${user}",
+      "add": "${domain}",
+      "port": "${tls}",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "/Jvg",
+      "type": "none",
+      "host": "${bug}",
+      "tls": "tls"
+}
+EOF
+cat>/etc/xray/vmess-$user-nontls.json<<EOF
+      {
+      "v": "2",
+      "ps": "${user}",
+      "add": "${bug}",
+      "port": "${nontls}",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "/Jvg",
+      "type": "none",
+      "host": "${domain}",
+      "tls": "none"
+}
+EOF
+cat >/etc/xray/$user-tls.json << EOF
+      {
+      "v": "0",
+      "ps": "${user}",
+      "add": "${domain}",
+      "port": "80",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "grpc",
+      "path": "GunService",
+      "type": "none",
+      "host": "${bug}",
+      "tls": "tls"
+}
+EOF
